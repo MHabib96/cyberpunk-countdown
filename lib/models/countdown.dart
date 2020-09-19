@@ -1,26 +1,28 @@
+import 'package:cyberpunkcountdown/services/countdown_service.dart';
+import 'package:cyberpunkcountdown/types/time.dart';
+import 'package:cyberpunkcountdown/utilities/extensions.dart';
+
 class Countdown {
-  int _days;
-  int _hours;
-  int _minutes;
-  int _seconds;
+  String _days;
+  String _hours;
+  String _minutes;
+  String _seconds;
 
-  //Just for testing
-  final int totalDays;
-  final int totalHours;
-  final int totalMinutes;
-  final int totalSeconds;
+  var _service = CountdownService();
 
-  Countdown({this.totalDays, this.totalHours, this.totalMinutes, this.totalSeconds}) {
+  Countdown({String totalDays, String totalHours, String totalMinutes, String totalSeconds}) {
     final _now = DateTime.now();
-    _minutes = totalMinutes == 0 ? 0 : (Duration.minutesPerHour - _now.minute) - 1;
-    _seconds = totalSeconds == 0 ? 0 : (Duration.secondsPerMinute - _now.second) - 1;
+    _days = totalDays.addZero();
+    _hours = totalHours == '00' ? '00' : _service.formatCountdown(Time.hours, _now);
+    _minutes = totalMinutes == '00' ? '00' : _service.formatCountdown(Time.minutes, _now);
+    _seconds = totalSeconds == '00' ? '00' : _service.formatCountdown(Time.seconds, _now);
   }
 
-  int get days => _days;
+  String get days => _days;
 
-  int get hours => _hours;
+  String get hours => _hours;
 
-  int get minutes => _minutes;
+  String get minutes => _minutes;
 
-  int get seconds => _seconds;
+  String get seconds => _seconds;
 }

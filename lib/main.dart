@@ -1,18 +1,15 @@
+import 'package:cyberpunkcountdown/routing/router.dart';
+import 'package:cyberpunkcountdown/utilities/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:cyberpunkcountdown/screens/countdown_screen.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(CyberpunkCountdown());
 
-class MyApp extends StatelessWidget {
+class CyberpunkCountdown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: CountdownScreen(),
+      onGenerateRoute: Router.generateRoute,
+      initialRoute: kCountdownScreenRoute,
     );
   }
 }

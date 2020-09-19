@@ -1,10 +1,12 @@
 import 'dart:async';
-import 'package:cyberpunkcountdown/models/countdown.dart';
 import 'package:flutter/material.dart';
-import 'package:cyberpunkcountdown/extensions/int_extensions.dart';
+import 'package:cyberpunkcountdown/utilities/constants.dart';
+import 'package:cyberpunkcountdown/models/countdown.dart';
+import 'package:cyberpunkcountdown/utilities/extensions.dart';
 
 class CountdownScreen extends StatefulWidget {
-  final release = DateTime(2020, 09, 18, 15, 11, 0);
+  final release =
+      DateTime(kReleaseYear, kReleaseMonth, kReleaseDay, kReleaseHour, kReleaseMinute, 0);
 
   @override
   _CountdownScreenState createState() => _CountdownScreenState();
@@ -20,12 +22,21 @@ class _CountdownScreenState extends State<CountdownScreen> {
   void configure() {
     _now = DateTime.now();
     _difference = widget.release.difference(_now);
-
     _countdown = Countdown(
       totalDays: _difference.inDays.formatTotalTime(),
       totalHours: _difference.inHours.formatTotalTime(),
       totalMinutes: _difference.inMinutes.formatTotalTime(),
       totalSeconds: _difference.inSeconds.formatTotalTime(),
+    );
+  }
+
+  Widget singleCountdown(String label, String countdown) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        Text(countdown, style: TextStyle(fontSize: 60)),
+        Text(label, style: TextStyle(fontSize: 25)),
+      ],
     );
   }
 
@@ -43,29 +54,16 @@ class _CountdownScreenState extends State<CountdownScreen> {
     return Scaffold(
       backgroundColor: Colors.teal,
       body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text('Minutes - ', style: TextStyle(fontSize: 32)),
-                Text('${_countdown.totalMinutes}', style: TextStyle(fontSize: 42)),
-                SizedBox(width: 10),
-                Text('${_countdown.minutes}', style: TextStyle(fontSize: 42)),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text('Seconds - ', style: TextStyle(fontSize: 32)),
-                Text('${_countdown.totalSeconds}', style: TextStyle(fontSize: 42)),
-                SizedBox(width: 10),
-                Text('${_countdown.seconds}', style: TextStyle(fontSize: 42)),
-              ],
-            ),
-            //Text('$_totalSeconds', style: TextStyle(fontSize: 42)),
-            //Text('$_seconds', style: TextStyle(fontSize: 42)),
+            singleCountdown('Days', _countdown.days),
+            SizedBox(width: 20),
+            singleCountdown('Hours', _countdown.hours),
+            SizedBox(width: 20),
+            singleCountdown('Minutes', _countdown.minutes),
+            SizedBox(width: 20),
+            singleCountdown('Seconds', _countdown.seconds),
           ],
         ),
       ),

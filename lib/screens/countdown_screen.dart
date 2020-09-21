@@ -34,8 +34,8 @@ class _CountdownScreenState extends State<CountdownScreen> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Text(countdown, style: TextStyle(fontSize: 60)),
-        Text(label, style: TextStyle(fontSize: 25)),
+        Text(countdown, style: TextStyle(fontSize: 60, color: Colors.white)),
+        Text(label, style: TextStyle(fontSize: 25, color: Colors.white)),
       ],
     );
   }
@@ -51,19 +51,30 @@ class _CountdownScreenState extends State<CountdownScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.teal,
-      body: Center(
-        child: Row(
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('images/cp-skyscraper.jpg'),
+        ),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            singleCountdown('Days', _countdown.days),
-            SizedBox(width: 20),
-            singleCountdown('Hours', _countdown.hours),
-            SizedBox(width: 20),
-            singleCountdown('Minutes', _countdown.minutes),
-            SizedBox(width: 20),
-            singleCountdown('Seconds', _countdown.seconds),
+            SizedBox(height: 200),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                singleCountdown('Days', _countdown.days),
+                SizedBox(width: 20),
+                singleCountdown('Hours', _countdown.hours),
+                SizedBox(width: 20),
+                singleCountdown('Minutes', _countdown.minutes),
+                SizedBox(width: 20),
+                singleCountdown('Seconds', _countdown.seconds),
+              ],
+            ),
           ],
         ),
       ),

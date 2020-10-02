@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:cyberpunkcountdown/components/countdown_card.dart';
 import 'package:cyberpunkcountdown/services/countdown_service.dart';
 import 'package:cyberpunkcountdown/types/time_type.dart';
 import 'package:flutter/material.dart';
@@ -40,16 +41,6 @@ class _CountdownScreenState extends State<CountdownScreen> {
     _countdown = Countdown(days, hours, minutes, seconds);
   }
 
-  Widget singleCountdown(String label, String countdown) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Text(countdown, style: TextStyle(fontSize: 60, color: Colors.white)),
-        Text(label, style: TextStyle(fontSize: 25, color: Colors.white)),
-      ],
-    );
-  }
-
   @override
   void initState() {
     super.initState();
@@ -73,18 +64,7 @@ class _CountdownScreenState extends State<CountdownScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             SizedBox(height: 200),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                singleCountdown('Days', _countdown.days),
-                SizedBox(width: 20),
-                singleCountdown('Hours', _countdown.hours),
-                SizedBox(width: 20),
-                singleCountdown('Minutes', _countdown.minutes),
-                SizedBox(width: 20),
-                singleCountdown('Seconds', _countdown.seconds),
-              ],
-            ),
+            CountdownCard(countdown: _countdown),
           ],
         ),
       ),

@@ -1,5 +1,5 @@
 extension IntExtensions on int {
-  String formatTotalTime() => this.isNegative ? '00' : this.toString();
+  String toTimeString() => this.isNegative ? '00' : this.toString();
 }
 
 extension StringExtensions on String {

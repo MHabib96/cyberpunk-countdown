@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:cyberpunkcountdown/models/countdown.dart';
 import 'package:cyberpunkcountdown/utilities/extensions.dart';
+import 'package:cyberpunkcountdown/types/time_type.dart';
+import 'package:cyberpunkcountdown/services/countdown_service.dart';
 
 class ScratchScreen extends StatefulWidget {
   final release = DateTime(2020, 09, 21, 0, 0, 0);
@@ -11,22 +13,30 @@ class ScratchScreen extends StatefulWidget {
 }
 
 class _ScratchScreenState extends State<ScratchScreen> {
-  DateTime _now;
-  Duration _difference;
   Timer _ticker;
 
   Countdown _countdown;
 
   void configure() {
-    _now = DateTime.now();
-    _difference = widget.release.difference(_now);
+    var now = DateTime.now();
+    var difference = widget.release.difference(now);
+    var service = CountdownService();
 
-    _countdown = Countdown(
-      totalDays: _difference.inDays.formatTotalTime(),
-      totalHours: _difference.inHours.formatTotalTime(),
-      totalMinutes: _difference.inMinutes.formatTotalTime(),
-      totalSeconds: _difference.inSeconds.formatTotalTime(),
-    );
+    var days = difference.inDays.toTimeString().addZero();
+
+    var hours = difference.inHours.toTimeString() == '00'
+        ? '00'
+        : service.calculateCountdown(TimeType.hours, now);
+
+    var minutes = difference.inMinutes.toTimeString() == '00'
+        ? '00'
+        : service.calculateCountdown(TimeType.minutes, now);
+
+    var seconds = difference.inSeconds.toTimeString() == '00'
+        ? '00'
+        : service.calculateCountdown(TimeType.seconds, now);
+
+    _countdown = Countdown(days, hours, minutes, seconds);
   }
 
   @override

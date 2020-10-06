@@ -55,7 +55,7 @@ class _CountdownScreenState extends State<CountdownScreen> {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('images/cp-skyscraper.jpg'),
+          image: AssetImage('images/backgrounds/cp-yellow-background.png'),
         ),
       ),
       child: Scaffold(
@@ -63,7 +63,6 @@ class _CountdownScreenState extends State<CountdownScreen> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            SizedBox(height: 200),
             CountdownCard(countdown: _countdown),
           ],
         ),
@@ -71,3 +70,20 @@ class _CountdownScreenState extends State<CountdownScreen> {
     );
   }
 }
+//Scaffold(
+//backgroundColor: Colors.teal,
+//);
+
+//Column(
+//mainAxisAlignment: MainAxisAlignment.center,
+//children: <Widget>[
+////SizedBox(height: 200),
+//Image.asset('images/cp-default-logo.png'),
+//CountdownCard(
+//countdown: _countdown,
+//valueFontSize: 20,
+//labelFontSize: 20,
+//),
+//Image.asset('images/cd-project-red-logo.png', scale: 8),
+//],
+//),

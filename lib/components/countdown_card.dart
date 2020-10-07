@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cyberpunkcountdown/models/countdown.dart';
+import 'package:cyberpunkcountdown/types/label_type.dart';
+import 'package:cyberpunkcountdown/utilities/constants.dart';
 
 class CountdownCard extends StatelessWidget {
   final Countdown countdown;
@@ -8,6 +10,7 @@ class CountdownCard extends StatelessWidget {
   final double labelFontSize;
   final Color valueColor;
   final Color labelColor;
+  final LabelType labelType;
 
   CountdownCard({
     @required this.countdown,
@@ -16,15 +19,37 @@ class CountdownCard extends StatelessWidget {
     this.labelFontSize,
     this.valueColor,
     this.labelColor,
+    this.labelType,
   });
+
+  List<String> getLabels(LabelType labelType) {
+    switch (labelType) {
+      case LabelType.lowerLong:
+        return kLongLabels.map((e) => e.toLowerCase()).toList();
+      case LabelType.lowerShort:
+        return kShortLabels.map((e) => e.toLowerCase()).toList();
+      case LabelType.normalLong:
+        return kLongLabels;
+      case LabelType.normalShort:
+        return kShortLabels;
+      case LabelType.upperLong:
+        return kLongLabels.map((e) => e.toUpperCase()).toList();
+      case LabelType.upperShort:
+        return kShortLabels.map((e) => e.toUpperCase()).toList();
+      default:
+        return kLongLabels;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    var labels = getLabels(labelType);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         _SingleCountdownCard(
-          label: 'Days',
+          label: labels[0],
           value: countdown.days,
           valueFontSize: valueFontSize ?? 20,
           labelFontSize: labelFontSize ?? 20,
@@ -33,7 +58,7 @@ class CountdownCard extends StatelessWidget {
         ),
         SizedBox(width: spacing ?? 10),
         _SingleCountdownCard(
-          label: 'Hours',
+          label: labels[1],
           value: countdown.hours,
           valueFontSize: valueFontSize ?? 20,
           labelFontSize: labelFontSize ?? 20,
@@ -42,7 +67,7 @@ class CountdownCard extends StatelessWidget {
         ),
         SizedBox(width: spacing ?? 10),
         _SingleCountdownCard(
-          label: 'Minutes',
+          label: labels[2],
           value: countdown.minutes,
           valueFontSize: valueFontSize ?? 20,
           labelFontSize: labelFontSize ?? 20,
@@ -51,7 +76,7 @@ class CountdownCard extends StatelessWidget {
         ),
         SizedBox(width: spacing ?? 10),
         _SingleCountdownCard(
-          label: 'Seconds',
+          label: labels[3],
           value: countdown.seconds,
           valueFontSize: valueFontSize ?? 20,
           labelFontSize: labelFontSize ?? 20,

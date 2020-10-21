@@ -53,6 +53,8 @@ class _CountdownScreenState extends State<CountdownScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;
+
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -71,6 +73,31 @@ class _CountdownScreenState extends State<CountdownScreen> {
               labelFontSize: 20,
               labelType: LabelType.normalShort,
             ),
+            SizedBox(height: 50),
+            SizedBox(
+              height: screenSize.height * 0.025,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                //mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Expanded(
+                    child: Image.asset(
+                      'images/platform_logos/xb1_black_logo.png',
+                    ),
+                  ),
+                  Expanded(
+                    child: Image.asset(
+                      'images/platform_logos/ps4_black_logo.png',
+                    ),
+                  ),
+                  Expanded(
+                    child: Image.asset(
+                      'images/platform_logos/pc_black_logo.png',
+                    ),
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),

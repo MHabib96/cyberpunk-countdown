@@ -25,6 +25,7 @@ flutter:
     - images/
     - images/backgrounds/
     - images/logos/
+    - images/platform_logos/
 
   # fonts:
   #   - family: Schyler

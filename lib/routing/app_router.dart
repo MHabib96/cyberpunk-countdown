@@ -3,7 +3,7 @@ import 'package:cyberpunkcountdown/screens/scratch_screen.dart';
 import 'package:cyberpunkcountdown/utilities/constants.dart';
 import 'package:flutter/material.dart';
 
-class Router {
+class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case kCountdownScreenRoute:

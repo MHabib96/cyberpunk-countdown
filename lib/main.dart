@@ -9,7 +9,7 @@ class CyberpunkCountdown extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       onGenerateRoute: AppRouter.generateRoute,
-      initialRoute: kCountdownScreenRoute,
+      initialRoute: kLoadingScreenRoute,
     );
   }
 }

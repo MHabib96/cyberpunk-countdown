@@ -9,6 +9,11 @@ const int kReleaseMinute = 0;
 const String kCountdownScreenRoute = '/countdown';
 const String kScratchScreenRoute = '/testing';
 
+//Backgrounds
+const String kDefaultBackground = 'cp-yellow-background';
+const String kStreetBackground = 'cp-street-background.png';
+const String kYellowBackground = 'cp-yellow-background.png';
+
 //Countdown Card
 const List<String> kShortLabels = <String>['Days', 'Hours', 'Mins', 'Secs'];
 const List<String> kLongLabels = <String>['Days', 'Hours', 'Minutes', 'Seconds'];

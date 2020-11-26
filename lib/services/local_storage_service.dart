@@ -14,15 +14,13 @@ class LocalStorageService extends StorageService {
   }
 
   @override
-  String getBackground() =>
-      _preferences.getString(_backgroundKey) ?? kDefaultBackground;
+  String getBackground() => _preferences.getString(_backgroundKey) ?? kDefaultBackground;
 
   @override
   String getLogo() => _preferences.getString(_logoKey) ?? kDefaultLogo;
 
   @override
-  void setBackground(String background) =>
-      _preferences.setString(_backgroundKey, background);
+  void setBackground(String background) => _preferences.setString(_backgroundKey, background);
 
   @override
   void setLogo(String logo) => _preferences.setString(_logoKey, logo);

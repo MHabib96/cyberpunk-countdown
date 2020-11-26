@@ -12,8 +12,8 @@ import 'package:cyberpunkcountdown/utilities/globals.dart' as globals;
 import 'package:flutter/material.dart';
 
 class CountdownScreen extends StatefulWidget {
-  final release = DateTime(kReleaseYear, kReleaseMonth, kReleaseDay,
-      kReleaseHour, kReleaseMinute, 0);
+  final release =
+      DateTime(kReleaseYear, kReleaseMonth, kReleaseDay, kReleaseHour, kReleaseMinute, 0);
 
   @override
   _CountdownScreenState createState() => _CountdownScreenState();

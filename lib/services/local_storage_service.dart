@@ -9,6 +9,12 @@ class LocalStorageService extends StorageService {
 
   SharedPreferences _preferences;
 
+  //Singleton
+  LocalStorageService._();
+  static final LocalStorageService _instance = LocalStorageService._();
+  factory LocalStorageService() => _instance;
+
+  //Must run before calling overrides
   initialise() async {
     _preferences = await SharedPreferences.getInstance();
   }
@@ -20,8 +26,14 @@ class LocalStorageService extends StorageService {
   String getLogo() => _preferences.getString(_logoKey) ?? kDefaultLogo;
 
   @override
+  int getCountdownLabel() => _preferences.getInt(_countdownLabelKey) ?? kDefaultLabel;
+
+  @override
   void setBackground(String background) => _preferences.setString(_backgroundKey, background);
 
   @override
   void setLogo(String logo) => _preferences.setString(_logoKey, logo);
+
+  @override
+  void setCountdownLabel(int label) => _preferences.setInt(_countdownLabelKey, label);
 }

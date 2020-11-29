@@ -4,11 +4,11 @@ import 'package:cyberpunkcountdown/components/countdown_card.dart';
 import 'package:cyberpunkcountdown/components/platform_showcase.dart';
 import 'package:cyberpunkcountdown/models/countdown.dart';
 import 'package:cyberpunkcountdown/services/countdown_service.dart';
+import 'package:cyberpunkcountdown/services/local_storage_service.dart';
 import 'package:cyberpunkcountdown/types/label_type.dart';
 import 'package:cyberpunkcountdown/types/time_type.dart';
 import 'package:cyberpunkcountdown/utilities/constants.dart';
 import 'package:cyberpunkcountdown/utilities/extensions.dart';
-import 'package:cyberpunkcountdown/utilities/globals.dart' as globals;
 import 'package:flutter/material.dart';
 
 class CountdownScreen extends StatefulWidget {
@@ -56,13 +56,14 @@ class _CountdownScreenState extends State<CountdownScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var localStorage = LocalStorageService();
     var screenSize = MediaQuery.of(context).size;
 
     return Material(
       child: Stack(
         children: <Widget>[
           Image.asset(
-            globals.localStorage.getBackground(),
+            localStorage.getBackground(),
             width: screenSize.width,
             height: screenSize.height,
             fit: BoxFit.cover,
@@ -70,15 +71,16 @@ class _CountdownScreenState extends State<CountdownScreen> {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Image.asset(globals.localStorage.getLogo()),
+              Image.asset(localStorage.getLogo()),
               CountdownCard(
                 countdown: _countdown,
                 valueFontSize: 40,
                 labelFontSize: 20,
-                labelType: LabelType.normalShort,
+                labelType: LabelType.values[localStorage.getCountdownLabel()],
               ),
             ],
           ),
+          RaisedButton(onPressed: () => Navigator.pushNamed(context, kSettingsScreenRoute)),
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(

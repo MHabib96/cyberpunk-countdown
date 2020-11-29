@@ -1,16 +1,8 @@
 class Countdown {
-  final String _days;
-  final String _hours;
-  final String _minutes;
-  final String _seconds;
+  final String days;
+  final String hours;
+  final String minutes;
+  final String seconds;
 
-  Countdown(this._days, this._hours, this._minutes, this._seconds);
-
-  String get days => _days;
-
-  String get hours => _hours;
-
-  String get minutes => _minutes;
-
-  String get seconds => _seconds;
+  Countdown(this.days, this.hours, this.minutes, this.seconds);
 }

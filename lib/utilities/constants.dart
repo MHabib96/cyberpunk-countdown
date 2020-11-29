@@ -11,13 +11,19 @@ const String kCountdownScreenRoute = '/countdown';
 const String kSettingsScreenRoute = '/settings';
 const String kScratchScreenRoute = '/testing';
 
-//Backgrounds
+//Default Settings
 const String kDefaultBackground = 'images/backgrounds/cp-yellow-background.png';
+const String kDefaultLogo = 'images/logos/cp-black-logo.png';
+const int kDefaultLabel = 0;
+
+//Backgrounds
 const String kStreetBackground = 'images/backgrounds/cp-street-background.png';
 const String kYellowBackground = 'images/backgrounds/cp-yellow-background.png';
 
 //Logos
-const String kDefaultLogo = 'images/logos/cp-black-logo.png';
+const String kBlackLogo = 'images/logos/cp-black-logo.png';
+const String kYellowLogo = 'images/logos/cp-default-logo.png';
+const String kPinkLogo = 'images/logos/cp-pink-logo.jpg';
 
 //Countdown Card
 const List<String> kShortLabels = <String>['Days', 'Hours', 'Mins', 'Secs'];

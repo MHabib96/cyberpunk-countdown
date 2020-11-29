@@ -1,17 +1,18 @@
-import 'package:cyberpunkcountdown/models/image_option.dart';
+import 'package:cyberpunkcountdown/models/settings_item.dart';
 import 'package:flutter/material.dart';
 
 //TODO: Highlight/Shade selected background.
-class ImageOptions extends StatelessWidget {
-  final List<ImageOption> imageOptionItems;
+class SettingsOptions extends StatelessWidget {
+  final List<SettingsItem> settingsItems;
   final String label;
-  final Function onPressed;
+  final double height;
+  final Function(int) onPressed;
 
-  ImageOptions({@required this.imageOptionItems, this.label, this.onPressed});
+  SettingsOptions({@required this.settingsItems, this.label, this.height, this.onPressed});
 
   SingleChildScrollView getImageWidgets() {
-    var _options = imageOptionItems.map((x) => Image.asset(x.imagePath)).toList();
-    var _selections = imageOptionItems.map((x) => x.isSelected).toList();
+    var _options = settingsItems.map((x) => Image.asset(x.displayImage)).toList();
+    var _selections = settingsItems.map((x) => x.isSelected).toList();
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
@@ -27,8 +28,6 @@ class ImageOptions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
-
     return Column(
       children: [
         if (label != null)
@@ -39,7 +38,7 @@ class ImageOptions extends StatelessWidget {
         Align(
           alignment: Alignment.centerLeft,
           child: SizedBox(
-            height: screenSize.height * 0.30,
+            height: height,
             child: getImageWidgets(),
           ),
         ),
